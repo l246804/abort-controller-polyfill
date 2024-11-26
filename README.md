@@ -1,19 +1,21 @@
-[![npm version](https://badge.fury.io/js/yet-another-abortcontroller-polyfill.svg)](https://badge.fury.io/js/yet-another-abortcontroller-polyfill)
-![Node.js CI](https://github.com/benlesh/abort-controller-polyfill/workflows/Node.js%20CI/badge.svg)
+[![npm version](https://badge.fury.io/js/modern-abortcontroller-polyfill.svg)](https://badge.fury.io/js/modern-abortcontroller-polyfill)
+![Node.js CI](https://github.com/l246804/abort-controller-polyfill/workflows/Node.js%20CI/badge.svg)
 
-# abort-controller-polyfill
+# modern-abort-controller-polyfill
 
-A simple polyfill for abort controller with proper event handling.
+Forked from [yet-another-abortcontroller-polyfill](https://www.npmjs.com/package/yet-another-abortcontroller-polyfill)
 
-This was created because other polyfills had event handling that was so far off that fixing them would have contituted just rewriting them completely.
+**Changes in this fork**
 
-Polyfills the following:
-
-- [AbortController]()
+- **Forcefully override native classes**
 - [AbortSignal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
-
-## Development
-
-Be sure to install dependencies. This depends on a lightweight [EventTarget polyfill](https://github.com/benlesh/event-target-polyfill), but nothing else.
-
-To run tests, just run `npm test`.
+  - Supports instance properties
+    - [`reason`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/reason)
+  - Supports instance methods
+    - [`throwIfAborted`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/throwIfAborted)
+  - Supports static methods
+    - [`abort()`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/abort_static)
+    - [`any()`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/any_static)
+    - [`timeout()`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/timeout_static)
+- [AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)
+  - Supports instance method [`abort(reason)`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort)

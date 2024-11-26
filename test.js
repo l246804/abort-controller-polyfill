@@ -6,6 +6,10 @@ require("./index.js");
   assertDefined(AbortController, "AbortController was not defined");
   assertDefined(AbortSignal, "AbortSignal was not defined");
 
+  assertDefined(AbortSignal.abort, "AbortSignal.abort() was not defined");
+  assertDefined(AbortSignal.any, "AbortSignal.any() was not defined");
+  assertDefined(AbortSignal.timeout, "AbortSignal.timeout() was not defined");
+
   const ac = new AbortController();
   assertInstanceOf(
     ac.signal,
@@ -17,13 +21,16 @@ require("./index.js");
     EventTarget,
     "AbortSignal was not instanceof EventTarget"
   );
+
+  assertDefined(ac.signal.throwIfAborted, "AbortSignal.prototype.throwIfAborted() was not defined");
 }
 
 {
   const ac = new AbortController();
   assert(ac.signal.aborted === false, "signal.aborted should be false");
-  ac.abort();
+  ac.abort('error');
   assert(ac.signal.aborted === true, "signal.aborted should be true");
+  assert(ac.signal.reason === 'error', 'signal.reason should be "error"');
 }
 
 {
@@ -40,13 +47,18 @@ require("./index.js");
       e.type === "abort",
       'onabort should get an event with the type "abort"'
     );
+    assert(
+      e.reason === 'error',
+      'onabort should get an event with the reason "error"'
+    );
     onabortCalled++;
   };
 
-  ac.abort();
+  ac.abort('error');
   ac.abort();
 
   assert(signal.aborted === true, "Signal should be flagged as aborted.");
+  assert(signal.reason === 'error', 'Signal.reason should be "error".');
   assert(
     onabortCalled === 1,
     `onabort should be called once. It was called ${onabortCalled} times.`
