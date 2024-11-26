@@ -1,10 +1,11 @@
 {
-  "name": "yet-another-abortcontroller-polyfill",
-  "version": "0.0.4",
-  "description": "An AbortController Polyfill",
+  "name": "modern-abortcontroller-polyfill",
+  "version": "0.5.0",
+  "description": "An Modern AbortController Polyfill",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test.js"
+    "test": "node ./test.js",
+    "bumpp": "bumpp"
   },
   "repository": {
     "type": "git",
@@ -16,13 +17,14 @@
     "polyfill",
     "AbortSignal"
   ],
-  "author": "Ben Lesh <ben@benlesh.com>",
+  "author": "leihaohao <https://github.com/l246804>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/benlesh/abort-controller-polyfill/issues"
   },
   "homepage": "https://github.com/benlesh/abort-controller-polyfill#readme",
   "devDependencies": {
-    "event-target-polyfill": "0.0.3"
+    "bumpp": "^9.8.1",
+    "event-target-polyfill": "0.0.4"
   }
 }
